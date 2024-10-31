@@ -1,14 +1,20 @@
 #include "raylib.h"
+#include "Game.hpp"
+
+const int WINDOW_SIZE = 720;
 
 int main(void)
 {
-    InitWindow(800, 600, "Hello Raylib!");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(WINDOW_SIZE, WINDOW_SIZE, "Hello Raylib!");
     SetTargetFPS(60);
+    Game game;
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(BLUE);
-        DrawText("Hello", 300, 300, 16, WHITE);
+        game.HandleEvents();
+        game.SetDisplay();
         EndDrawing();
     }
     CloseWindow();
