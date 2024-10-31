@@ -1,7 +1,7 @@
 # Compiler
 CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -g -O2 -I$(INC_DIR) -L$(LIB_DIR)
-LDFLAGS = -lraylib -lgdi32 -lwinmm -lm -lpthread
+LDFLAGS = -lraylib -lgdi32 -lwinmm -lpthread -lopengl32 -static
 
 # Directories
 SRC_DIR = src
