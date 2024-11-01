@@ -19,7 +19,8 @@ void Menu::DrawCell(const int &x, const int &y)
         this->menuHeight / 4 + x * this->fontSize,
         7 * this->fontSize,
         this->menuHeight / 8,
-        LIME);
+        LIME
+    );
     char message[] = "New 00 min Game";
     switch (y)
     {
@@ -41,7 +42,8 @@ void Menu::DrawCell(const int &x, const int &y)
         this->menuWidth / 2 - 2 * this->fontSize,
         this->menuHeight / 4 + (x + 1) * this->fontSize,
         this->fontSize / 2,
-        this->fontColor);
+        this->fontColor
+    );
 }
 
 void Menu::ShowMenu()
@@ -51,7 +53,8 @@ void Menu::ShowMenu()
         this->menuWidth / 2 - 3 * this->fontSize,
         this->menuHeight / 4,
         this->fontSize,
-        this->fontColor);
+        this->fontColor
+    );
     DrawCell(2, 5);
     DrawCell(5, 10);
     DrawCell(8, 15);
@@ -60,7 +63,8 @@ void Menu::ShowMenu()
         this->menuWidth * 7 / 8,
         this->menuHeight * 7 / 8,
         this->fontSize / 4,
-        this->fontColor);
+        this->fontColor
+    );
 }
 
 int Menu::HandleMouseClick(const int &x_pos, const int &y_pos)

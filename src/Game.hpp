@@ -1,6 +1,7 @@
 #pragma once
 #include "Board.hpp"
 #include "Menu.hpp"
+#include "Header.hpp"
 
 class Game
 {
@@ -20,4 +21,5 @@ private:
     int state;
     Board board;
     Menu menu;
+    Header header;
 };

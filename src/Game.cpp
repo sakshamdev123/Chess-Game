@@ -20,6 +20,7 @@ void Game::SetDisplay()
         break;
     case 1:
         this->board.ShowBoard();
+        this->header.ShowHeader();
         break;
 
     default:
@@ -56,6 +57,8 @@ void Game::HandleResize()
     this->menu.menuWidth = screenWidth;
     this->board.boardSize = screenHeight * 8 / 9;
     this->board.padding = screenWidth - this->board.boardSize;
+    this->header.headerHeight = screenHeight;
+    this->header.headerWidth = screenWidth;
 }
 
 void Game::HandleEvents()
