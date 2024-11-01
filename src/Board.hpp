@@ -6,7 +6,6 @@ class Board
 public:
     Board();
     ~Board();
-    void DrawCell(const int &posX, const int &posY, const Color &color);
     void ShowBoard();
     int boardSize;
     int padding;

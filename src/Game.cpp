@@ -15,17 +15,16 @@ void Game::SetDisplay()
 {
     switch (state)
     {
+    case 0:
+        this->menu.ShowMenu();
+        break;
     case 1:
-        board.ShowBoard();
+        this->board.ShowBoard();
         break;
 
     default:
         break;
     }
-}
-
-void Game::ResetBoard()
-{
 }
 
 void Game::StartMenu()
@@ -49,24 +48,44 @@ void Game::DisplayResult()
     this->state = 3;
 }
 
-void Game::ResizeBoard()
+void Game::HandleResize()
 {
-    board.boardSize = GetScreenHeight() * 8 / 9;
-    board.padding = GetScreenWidth() - board.boardSize;
+    int screenHeight = GetScreenHeight();
+    int screenWidth = GetScreenWidth();
+    this->menu.menuHeight = screenHeight;
+    this->menu.menuWidth = screenWidth;
+    this->board.boardSize = screenHeight * 8 / 9;
+    this->board.padding = screenWidth - this->board.boardSize;
 }
 
 void Game::HandleEvents()
 {
     if (IsKeyPressed(KEY_ONE) && (this->state == 0 || this->state == 2))
-        StartGame(5);
+        this->StartGame(5);
     if (IsKeyPressed(KEY_TWO) && (this->state == 0 || this->state == 2))
-        StartGame(10);
+        this->StartGame(10);
     if (IsKeyPressed(KEY_THREE) && (this->state == 0 || this->state == 2))
-        StartGame(15);
+        this->StartGame(15);
     if (IsKeyPressed(KEY_FOUR) && this->state == 2)
-        StartMenu();
+        this->StartMenu();
     if (IsKeyPressed(KEY_Q) && this->state == 1)
-        QuitGame();
+        this->QuitGame();
+
     if (IsWindowResized())
-        ResizeBoard();
+        this->HandleResize();
+
+    if (IsMouseButtonDown(0))
+    {
+        int x_pos = GetMouseX();
+        int y_pos = GetMouseY();
+        switch (this->state)
+        {
+        case 0:
+            this->StartGame(menu.HandleMouseClick(x_pos, y_pos));
+            break;
+
+        default:
+            break;
+        }
+    }
 }
