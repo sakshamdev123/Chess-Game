@@ -1,9 +1,8 @@
 #include "raylib.h"
 #include "Game.hpp"
 #include "Board.hpp"
-#include <iostream>
 
-Game::Game() : state(0), board()
+Game::Game() : state(0), playerTurn(false)
 {
 }
 
@@ -21,6 +20,15 @@ void Game::SetDisplay()
     case 1:
         this->board.ShowBoard();
         this->header.ShowHeader();
+        this->timer.ShowTimer();
+        if (this->timer.gameOver)
+            this->state = 3;
+        break;
+    case 2:
+        this->timer.gameOver = false;
+        break;
+    case 3:
+        this->timer.gameOver = false;
         break;
 
     default:
@@ -33,10 +41,10 @@ void Game::StartMenu()
     this->state = 0;
 }
 
-void Game::StartGame(const int &t)
+void Game::StartGame(const int &time)
 {
     this->state = 1;
-    std::cout << t;
+    timer.SetTimer(time);
 }
 
 void Game::QuitGame()
@@ -49,6 +57,12 @@ void Game::DisplayResult()
     this->state = 3;
 }
 
+void Game::TogglePlayer()
+{
+    this->playerTurn = !this->playerTurn;
+    this->timer.ToggleTimer();
+}
+
 void Game::HandleResize()
 {
     int screenHeight = GetScreenHeight();
@@ -59,6 +73,9 @@ void Game::HandleResize()
     this->board.padding = screenWidth - this->board.boardSize;
     this->header.headerHeight = screenHeight;
     this->header.headerWidth = screenWidth;
+    this->timer.playerOneTimerPadding = screenWidth * 7 / 12 - screenHeight * 4 / 9;
+    this->timer.playerTwoTimerPadding = screenWidth * 4 / 12 + screenHeight * 4 / 9;
+    this->timer.fontSize = screenHeight / 32;
 }
 
 void Game::HandleEvents()
@@ -73,6 +90,8 @@ void Game::HandleEvents()
         this->StartMenu();
     if (IsKeyPressed(KEY_Q) && this->state == 1)
         this->QuitGame();
+    if (IsKeyPressed(KEY_SPACE) && this->state == 1)
+        this->TogglePlayer();
 
     if (IsWindowResized())
         this->HandleResize();
