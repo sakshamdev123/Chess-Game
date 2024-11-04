@@ -12,9 +12,8 @@ Board::~Board()
 void Board::ShowBoard()
 {
     this->cellSize = this->boardSize / 8;
-    this->SetBoard();
     Color color;
-    for (size_t i = 0; i < 64; i++)
+    for (int i = 0; i < 64; i++)
     {
         if ((i + (i / 8)) & 1)
             color = WHITE;
@@ -29,13 +28,19 @@ void Board::ShowBoard()
 
 void Board::SetBoard()
 {
-    this->board = {
-        -2, -3, -4, -5, -6, -4, -3, -2,
-        -1, -1, -1, -1, -1, -1, -1, -1,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
-        1, 1, 1, 1, 1, 1, 1, 1,
-        2, 3, 4, 5, 6, 4, 3, 2};
+    for (int i = 0; i < 5; i++)
+    {
+        this->board[i] = -i - 2;
+        this->board[56 + i] = i + 2;
+    }
+    for (int i = 5; i < 8; i++)
+    {
+        this->board[i] = i - 9;
+        this->board[56 + i] = 9 - i;
+    }
+    for (int i = 8; i < 16; i++)
+    {
+        this->board[i] = -1;
+        this->board[40 + i] = 1;
+    }
 }

@@ -44,7 +44,8 @@ void Game::StartMenu()
 void Game::StartGame(const int &time)
 {
     this->state = 1;
-    timer.SetTimer(time);
+    this->board.SetBoard();
+    this->timer.SetTimer(time);
 }
 
 void Game::QuitGame()

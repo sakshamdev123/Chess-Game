@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 class Board
 {
@@ -7,11 +6,11 @@ public:
     Board();
     ~Board();
     void ShowBoard();
+    void SetBoard();
     int boardSize;
     int padding;
 
 private:
     int cellSize;
-    std::vector<char> board;
-    void SetBoard();
+    char board[64] = {0};
 };
