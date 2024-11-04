@@ -1,5 +1,4 @@
 #include "Menu.hpp"
-#include "raylib.h"
 
 Menu::Menu() : menuHeight(GetScreenHeight()),
                menuWidth(GetScreenWidth()),

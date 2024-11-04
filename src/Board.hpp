@@ -9,8 +9,8 @@ public:
     void SetBoard();
     int boardSize;
     int padding;
+    char board[64] = {0};
 
 private:
     int cellSize;
-    char board[64] = {0};
 };

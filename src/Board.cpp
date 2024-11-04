@@ -18,7 +18,7 @@ void Board::ShowBoard()
         if ((i + (i / 8)) & 1)
             color = WHITE;
         else
-            color = BLACK;
+            color = GRAY;
         DrawRectangle(
             (i % 8) * this->cellSize + this->padding / 2,
             (i / 8) * this->cellSize + this->cellSize / 2,

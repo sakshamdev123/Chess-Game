@@ -3,6 +3,7 @@
 #include "Menu.hpp"
 #include "Header.hpp"
 #include "Timer.hpp"
+#include "Pieces.hpp"
 
 class Game
 {
@@ -26,4 +27,5 @@ private:
     Menu menu;
     Header header;
     Timer timer;
+    Pieces pieces;
 };

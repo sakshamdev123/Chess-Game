@@ -19,6 +19,7 @@ void Game::SetDisplay()
         break;
     case 1:
         this->board.ShowBoard();
+        this->pieces.ShowPieces(this->board.board);
         this->header.ShowHeader();
         this->timer.ShowTimer();
         if (this->timer.gameOver)
@@ -77,6 +78,8 @@ void Game::HandleResize()
     this->timer.playerOneTimerPadding = screenWidth * 7 / 12 - screenHeight * 4 / 9;
     this->timer.playerTwoTimerPadding = screenWidth * 4 / 12 + screenHeight * 4 / 9;
     this->timer.fontSize = screenHeight / 32;
+    this->pieces.cellSize = GetScreenHeight() / 9;
+    this->pieces.padding = GetScreenWidth() - GetScreenHeight() * 8 / 9;
 }
 
 void Game::HandleEvents()
